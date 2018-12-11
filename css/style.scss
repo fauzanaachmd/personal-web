@@ -1,0 +1,165 @@
+@import "mixins";
+
+@font-face {
+  font-family: 'mindfullyregular';
+  src: url('../fonts/mindfully_regular-webfont.woff2') format('woff2'),
+  url('../fonts/mindfully_regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'mindfullyalternate';
+  src: url('../fonts/mindfully_alternate-webfont.woff2') format('woff2'),
+  url('../fonts/mindfully_alternate-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'mindfullyalternate_italic';
+  src: url('../fonts/mindfully_alternate_italic-webfont.woff2') format('woff2'),
+  url('../fonts/mindfully_alternate_italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'mindfullyregular_italic';
+  src: url('../fonts/mindfully_regular__italic-webfont.woff2') format('woff2'),
+  url('../fonts/mindfully_regular__italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$mindfully: 'mindfullyregular';
+
+html, body {
+  background: url("../img/cloudy-day.png") repeat;
+}
+
+body {
+  padding-top: 56px;
+}
+
+* { box-sizing: border-box; }
+
+/* force scrollbar */
+html { overflow-y: scroll; }
+
+body {
+  font-family: sans-serif;
+}
+
+/* ---- isotope ---- */
+
+.grid {
+  //background: #DDD;
+  width: 100%;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+  padding: 15px;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+
+
+.home-container {
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .home-inner-content {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    @include transform(translate(0,-50%));
+  }
+}
+
+.myname {
+  font-family: $mindfully;
+  font-size: 100px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  color: #666;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    bottom: 0;
+    width: 30%;
+    background: rgba(255, 125, 18, 0.98);
+    height: 3px;
+    left: 50%;
+    @include transform(translate(-50%,0));
+    content: '';
+    opacity: 0;
+    @include transition(all .3s ease-in-out);
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+      bottom: 5px;
+    }
+  }
+}
+
+.nav-item.active {
+  .nav-link {
+    position: relative;
+
+    &:after {
+      display: none !important;
+    }
+    &:before {
+      position: absolute;
+      height: 3px;
+      width: 80%;
+      top: 50%;
+      left: 50%;
+      @include transform(translate(-50%,-50%) rotate(10deg));
+      content: '';
+      background: rgba(255, 125, 18, 0.98);
+      color: white;
+
+      @media(max-width: 992px) {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.my-photo {
+  @include box-shadow-mix(0 0 10px rgba(0,0,0,.3));
+  width: 400px;
+  margin-top: 80px;
+}
